@@ -1,1 +1,70 @@
+name: Build APK
 
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+    
+    - name: Install system dependencies
+      run: |
+        sudo apt update
+        sudo apt install -y git zip unzip openjdk-17-jdk python3-pip \
+          autoconf libtool pkg-config zlib1g-dev libncurses5-dev \
+          libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev \
+          build-essential ccache
+    
+    - name: Install buildozer and cython
+      run: |
+        pip install --upgrade pip
+        pip install buildozer cython
+    
+    - name: Create buildozer.spec
+      run: |
+        cat > buildozer.spec << 'EOF'
+        [app]
+        title = Nurse Mentor AI
+        package.name = nursementor
+        package.domain = com.drrahila
+        source.dir = .
+        source.include_exts = py,png,jpg,kv,atlas,ttf,json,db,txt
+        source.exclude_dirs = __pycache__,backups,reports
+
+        version = 1.0.0
+        requirements = python3,kivy==2.3.1,kivymd==1.1.1,pillow,fpdf2
+        orientation = portrait
+        fullscreen = 0
+        android.api = 33
+        android.minapi = 21
+        android.archs = arm64-v8a, armeabi-v7a
+        android.permissions = WRITE_EXTERNAL_STORAGE,READ_EXTERNAL_STORAGE
+        android.allow_backup = True
+        android.accept_sdk_license = True
+
+        [buildozer]
+        log_level = 2
+        warn_on_root = 1
+        EOF
+    
+    - name: Build with Buildozer
+      run: |
+        yes | buildozer -v android debug
+    
+    - name: Upload APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: nursementor-apk
+        path: bin/*.apk
+        retention-days: 30
