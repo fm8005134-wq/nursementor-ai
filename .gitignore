@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+*.pyo
+clinic.db
+clinic.db.before_restore
+notes.json
+backups/
+reports/
+.buildozer/
+bin/
+*.apk
+.kivy/

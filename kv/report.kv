@@ -1,0 +1,63 @@
+<ReportScreen>:
+    name: "report"
+    md_bg_color: app.theme_cls.bg_normal
+
+    MDBoxLayout:
+        orientation: "vertical"
+
+        MDTopAppBar:
+            id: report_toolbar
+            title: "Report"
+            elevation: 4
+            left_action_items: [["arrow-left", lambda x: root.go_back()]]
+
+        ScrollView:
+            do_scroll_x: False
+            bar_width: "3dp"
+
+            MDBoxLayout:
+                orientation: "vertical"
+                padding: "16dp"
+                spacing: "12dp"
+                size_hint_y: None
+                height: self.minimum_height
+
+                MDCard:
+                    orientation: "vertical"
+                    padding: "16dp"
+                    spacing: "6dp"
+                    radius: [12]
+                    elevation: 2
+                    size_hint_y: None
+                    height: self.minimum_height
+
+                    MDLabel:
+                        id: report_text
+                        text: ""
+                        halign: "left"
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        text_size: self.width, None
+                        font_name: "Roboto"
+
+        MDBoxLayout:
+            orientation: "horizontal"
+            padding: "10dp"
+            spacing: "8dp"
+            size_hint_y: None
+            height: "66dp"
+
+            MDRaisedButton:
+                text: "Save PDF"
+                size_hint: (1, 1)
+                on_release: root.save_pdf()
+
+            MDRaisedButton:
+                text: "Save Text"
+                size_hint: (1, 1)
+                on_release: root.save_text()
+
+            MDRaisedButton:
+                text: "Copy"
+                size_hint: (1, 1)
+                on_release: root.copy_report()

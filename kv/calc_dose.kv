@@ -1,0 +1,141 @@
+<CalcDoseScreen>:
+    name: "calc_dose"
+    md_bg_color: app.theme_cls.bg_normal
+
+    MDBoxLayout:
+        orientation: "vertical"
+
+        MDTopAppBar:
+            title: "Dose Calculator"
+            elevation: 4
+            left_action_items: [["arrow-left", lambda x: root.go_back()]]
+
+        ScrollView:
+            do_scroll_x: False
+            bar_width: "3dp"
+
+            MDBoxLayout:
+                orientation: "vertical"
+                padding: "16dp"
+                spacing: "12dp"
+                size_hint_y: None
+                height: self.minimum_height
+
+                MDLabel:
+                    text: "Enter the values below. The calculator will compute the total dose and volume."
+                    theme_text_color: "Secondary"
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    halign: "left"
+
+                MDTextField:
+                    id: weight_field
+                    hint_text: "Patient Weight (kg)"
+                    mode: "rectangle"
+                    input_filter: "float"
+                    size_hint_y: None
+                    height: "56dp"
+
+                MDTextField:
+                    id: dose_field
+                    hint_text: "Ordered Dose (mg/kg)"
+                    mode: "rectangle"
+                    input_filter: "float"
+                    size_hint_y: None
+                    height: "56dp"
+
+                MDTextField:
+                    id: conc_field
+                    hint_text: "Drug Concentration (mg/mL)"
+                    mode: "rectangle"
+                    input_filter: "float"
+                    size_hint_y: None
+                    height: "56dp"
+
+                MDRaisedButton:
+                    text: "Calculate"
+                    size_hint: (1, None)
+                    height: "50dp"
+                    on_release: root.calculate()
+
+                Widget:
+                    size_hint_y: None
+                    height: "4dp"
+
+                MDCard:
+                    id: result_card
+                    orientation: "vertical"
+                    padding: "16dp"
+                    spacing: "8dp"
+                    radius: [12]
+                    elevation: 2
+                    size_hint_y: None
+                    height: "0dp"
+                    opacity: 0
+                    md_bg_color: [0.94, 0.98, 0.97, 1]
+
+                    MDLabel:
+                        text: "Result"
+                        bold: True
+                        font_style: "H6"
+                        halign: "left"
+                        theme_text_color: "Custom"
+                        text_color: 0.0, 0.54, 0.48, 1
+                        size_hint_y: None
+                        height: "28dp"
+
+                    MDLabel:
+                        id: result_line1
+                        text: ""
+                        halign: "left"
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        text_size: self.width, None
+
+                    MDLabel:
+                        id: result_line2
+                        text: ""
+                        halign: "left"
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        text_size: self.width, None
+
+                    MDLabel:
+                        id: error_line
+                        text: ""
+                        halign: "left"
+                        theme_text_color: "Custom"
+                        text_color: 0.85, 0.20, 0.20, 1
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        text_size: self.width, None
+
+                MDCard:
+                    orientation: "vertical"
+                    padding: "14dp"
+                    spacing: "6dp"
+                    radius: [12]
+                    elevation: 1
+                    size_hint_y: None
+                    height: "140dp"
+                    md_bg_color: [1.0, 0.95, 0.80, 1]
+
+                    MDLabel:
+                        text: "Safety Notice"
+                        bold: True
+                        halign: "left"
+                        size_hint_y: None
+                        height: "22dp"
+                        theme_text_color: "Custom"
+                        text_color: 0.60, 0.40, 0.0, 1
+
+                    MDLabel:
+                        text: "Calculation result only. Always verify with physician orders, institutional policy, and medication references before clinical use."
+                        halign: "left"
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        text_size: self.width, None
+                        font_style: "Caption"
+                        theme_text_color: "Custom"
+                        text_color: 0.35, 0.25, 0.0, 1

@@ -1,0 +1,50 @@
+<TopicCard>:
+    orientation: "vertical"
+    padding: "16dp"
+    spacing: "8dp"
+    radius: [12, ]
+    elevation: 2
+    size_hint_y: None
+    height: self.minimum_height
+
+    MDLabel:
+        text: root.card_title
+        font_style: "H6"
+        bold: True
+        size_hint_y: None
+        height: self.texture_size[1]
+        text_size: self.width, None
+        halign: "left"
+
+    MDLabel:
+        text: root.card_body
+        size_hint_y: None
+        height: self.texture_size[1]
+        text_size: self.width, None
+        halign: "left"
+
+
+<TopicScreen>:
+    name: "topic"
+    md_bg_color: app.theme_cls.bg_normal
+
+    MDBoxLayout:
+        orientation: "vertical"
+
+        MDTopAppBar:
+            id: toolbar
+            title: "Topic"
+            elevation: 4
+            left_action_items: [["arrow-left", lambda x: root.go_back()]]
+
+        ScrollView:
+            do_scroll_x: False
+            bar_width: "3dp"
+
+            MDBoxLayout:
+                id: cards_box
+                orientation: "vertical"
+                padding: "16dp"
+                spacing: "12dp"
+                size_hint_y: None
+                height: self.minimum_height

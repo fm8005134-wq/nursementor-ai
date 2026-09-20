@@ -1,0 +1,139 @@
+<PatientCard>:
+    orientation: "horizontal"
+    padding: "16dp"
+    spacing: "14dp"
+    radius: [14, ]
+    elevation: 2
+    size_hint_y: None
+    height: "82dp"
+    ripple_behavior: True
+
+    MDIcon:
+        icon: "account-circle"
+        halign: "center"
+        valign: "middle"
+        theme_text_color: "Custom"
+        text_color: app.theme_cls.primary_color
+        font_size: "38sp"
+        size_hint: None, None
+        size: "42dp", "42dp"
+        pos_hint: {"center_y": .5}
+
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing: "2dp"
+        pos_hint: {"center_y": .5}
+        size_hint_y: None
+        height: self.minimum_height
+
+        MDLabel:
+            text: root.patient_name
+            font_style: "H6"
+            bold: True
+            size_hint_y: None
+            height: self.texture_size[1]
+            text_size: self.width, None
+            halign: "left"
+
+        MDLabel:
+            text: root.patient_meta
+            theme_text_color: "Secondary"
+            font_style: "Caption"
+            size_hint_y: None
+            height: self.texture_size[1]
+            text_size: self.width, None
+            halign: "left"
+
+    MDLabel:
+        text: root.visits_label
+        theme_text_color: "Custom"
+        text_color: app.theme_cls.primary_color
+        bold: True
+        font_style: "Caption"
+        size_hint: None, None
+        size: "70dp", "40dp"
+        halign: "right"
+        valign: "middle"
+        pos_hint: {"center_y": .5}
+
+
+<PatientsTab>:
+    orientation: "vertical"
+    padding: "16dp"
+    spacing: "12dp"
+
+    MDBoxLayout:
+        orientation: "horizontal"
+        size_hint_y: None
+        height: "48dp"
+
+        MDLabel:
+            text: "Patients"
+            font_style: "H4"
+            bold: True
+            size_hint_y: None
+            height: self.texture_size[1]
+            text_size: self.width, None
+            halign: "left"
+            pos_hint: {"center_y": .5}
+
+        Widget:
+
+        MDIconButton:
+            icon: "account-plus"
+            pos_hint: {"center_y": .5}
+            theme_text_color: "Custom"
+            text_color: app.theme_cls.primary_color
+            on_release: root.open_add_patient_dialog()
+
+    MDCard:
+        orientation: "horizontal"
+        padding: "14dp"
+        spacing: "12dp"
+        radius: [12, ]
+        elevation: 3
+        size_hint_y: None
+        height: "70dp"
+        ripple_behavior: True
+        md_bg_color: [0.0, 0.54, 0.48, 1]
+        on_release: root.open_add_patient_dialog()
+
+        MDIcon:
+            icon: "account-plus"
+            halign: "center"
+            valign: "middle"
+            theme_text_color: "Custom"
+            text_color: 1, 1, 1, 1
+            font_size: "30sp"
+            size_hint: None, None
+            size: "34dp", "34dp"
+            pos_hint: {"center_y": .5}
+
+        MDLabel:
+            text: "Register New Patient"
+            bold: True
+            font_style: "H6"
+            theme_text_color: "Custom"
+            text_color: 1, 1, 1, 1
+            pos_hint: {"center_y": .5}
+
+    MDTextField:
+        id: patient_search_field
+        hint_text: "Search by name or phone..."
+        mode: "rectangle"
+        icon_left: "magnify"
+        size_hint_y: None
+        height: "52dp"
+        on_text: root.on_search_text(self.text)
+
+    ScrollView:
+        do_scroll_x: False
+        bar_width: "3dp"
+
+        MDBoxLayout:
+            id: patients_box
+            orientation: "vertical"
+            spacing: "10dp"
+            size_hint_y: None
+            height: self.minimum_height
+            padding: [0, "4dp", 0, "16dp"]

@@ -1,0 +1,40 @@
+<NotesTab>:
+    orientation: "vertical"
+    padding: "16dp"
+    spacing: "12dp"
+
+    MDBoxLayout:
+        orientation: "horizontal"
+        size_hint_y: None
+        height: "56dp"
+
+        MDLabel:
+            text: "My Notes"
+            font_style: "H4"
+            bold: True
+            size_hint_y: None
+            height: self.texture_size[1]
+            text_size: self.width, None
+            halign: "left"
+            pos_hint: {"center_y": .5}
+
+        Widget:
+
+        MDIconButton:
+            icon: "plus"
+            pos_hint: {"center_y": .5}
+            theme_text_color: "Custom"
+            text_color: app.theme_cls.primary_color
+            on_release: root.open_add_dialog()
+
+    ScrollView:
+        do_scroll_x: False
+        bar_width: "3dp"
+
+        MDBoxLayout:
+            id: notes_box
+            orientation: "vertical"
+            spacing: "10dp"
+            size_hint_y: None
+            height: self.minimum_height
+            padding: [0, "8dp", 0, "16dp"]

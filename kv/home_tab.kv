@@ -1,0 +1,144 @@
+<TopicButton>:
+    orientation: "horizontal"
+    padding: "16dp"
+    spacing: "14dp"
+    radius: [14, ]
+    elevation: 2
+    size_hint_y: None
+    height: "78dp"
+    ripple_behavior: True
+
+    MDIcon:
+        icon: root.topic_icon
+        halign: "center"
+        valign: "middle"
+        theme_text_color: "Custom"
+        text_color: app.theme_cls.primary_color
+        font_size: "30sp"
+        size_hint: None, None
+        size: "34dp", "34dp"
+        pos_hint: {"center_y": .5}
+
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing: "2dp"
+        pos_hint: {"center_y": .5}
+        size_hint_y: None
+        height: self.minimum_height
+
+        MDLabel:
+            text: root.topic_name
+            font_style: "H6"
+            bold: True
+            size_hint_y: None
+            height: self.texture_size[1]
+            text_size: self.width, None
+            halign: "left"
+
+        MDLabel:
+            text: root.topic_desc
+            theme_text_color: "Secondary"
+            font_style: "Caption"
+            size_hint_y: None
+            height: self.texture_size[1]
+            text_size: self.width, None
+            halign: "left"
+
+
+<HomeTab>:
+    orientation: "vertical"
+
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: ["20dp", "20dp", "20dp", "8dp"]
+        spacing: "6dp"
+        size_hint_y: None
+        height: self.minimum_height
+
+        MDLabel:
+            text: "Welcome"
+            font_style: "H4"
+            bold: True
+            size_hint_y: None
+            height: self.texture_size[1]
+            text_size: self.width, None
+            halign: "left"
+
+        MDLabel:
+            text: "Select a nursing topic to begin"
+            theme_text_color: "Secondary"
+            size_hint_y: None
+            height: self.texture_size[1]
+            text_size: self.width, None
+            halign: "left"
+
+    ScrollView:
+        do_scroll_x: False
+        bar_width: "3dp"
+
+        MDBoxLayout:
+            orientation: "vertical"
+            padding: ["16dp", "8dp", "16dp", "24dp"]
+            spacing: "10dp"
+            size_hint_y: None
+            height: self.minimum_height
+
+            # ---------- Clinic Simulator banner ----------
+            MDCard:
+                orientation: "horizontal"
+                padding: "16dp"
+                spacing: "14dp"
+                radius: [14, ]
+                elevation: 3
+                size_hint_y: None
+                height: "92dp"
+                ripple_behavior: True
+                md_bg_color: [0.0, 0.54, 0.48, 1]
+                on_release: root.open_clinic_simulator()
+
+                MDIcon:
+                    icon: "stethoscope"
+                    halign: "center"
+                    valign: "middle"
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1
+                    font_size: "36sp"
+                    size_hint: None, None
+                    size: "40dp", "40dp"
+                    pos_hint: {"center_y": .5}
+
+                MDBoxLayout:
+                    orientation: "vertical"
+                    spacing: "2dp"
+                    pos_hint: {"center_y": .5}
+                    size_hint_y: None
+                    height: self.minimum_height
+
+                    MDLabel:
+                        text: "Clinic Simulator"
+                        font_style: "H6"
+                        bold: True
+                        theme_text_color: "Custom"
+                        text_color: 1, 1, 1, 1
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        text_size: self.width, None
+                        halign: "left"
+
+                    MDLabel:
+                        text: "Test your clinical judgement - 10 scenarios"
+                        font_style: "Caption"
+                        theme_text_color: "Custom"
+                        text_color: 0.9, 1, 1, 1
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        text_size: self.width, None
+                        halign: "left"
+
+            # ---------- Topics list ----------
+            MDBoxLayout:
+                id: topics_box
+                orientation: "vertical"
+                spacing: "10dp"
+                size_hint_y: None
+                height: self.minimum_height

@@ -1,0 +1,48 @@
+<MainScreen>:
+    name: "main"
+    md_bg_color: app.theme_cls.bg_normal
+
+    MDBottomNavigation:
+        id: bottom_nav
+        panel_color: app.theme_cls.primary_color
+        selected_color_background: app.theme_cls.primary_dark
+        text_color_active: 1, 1, 1, 1
+        text_color_normal: 0.85, 0.85, 0.85, 1
+        panel_height: "70dp"
+        use_text: True
+
+        MDBottomNavigationItem:
+            name: "home_tab"
+            text: "Home"
+            icon: "home"
+            HomeTab:
+
+        MDBottomNavigationItem:
+            name: "calculators_tab"
+            text: "Calc"
+            icon: "calculator"
+            CalculatorsTab:
+
+        MDBottomNavigationItem:
+            name: "dashboard_tab"
+            text: "Stats"
+            icon: "chart-box"
+            DashboardTab:
+
+        MDBottomNavigationItem:
+            name: "patients_tab"
+            text: "Patients"
+            icon: "account-multiple"
+            PatientsTab:
+
+        MDBottomNavigationItem:
+            name: "search_tab"
+            text: "Search"
+            icon: "magnify"
+            SearchTab:
+
+        MDBottomNavigationItem:
+            name: "notes_tab"
+            text: "Notes"
+            icon: "note-text"
+            NotesTab:

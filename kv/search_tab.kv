@@ -1,0 +1,34 @@
+<SearchTab>:
+    orientation: "vertical"
+    padding: "16dp"
+    spacing: "12dp"
+
+    MDLabel:
+        text: "Search"
+        font_style: "H4"
+        bold: True
+        size_hint_y: None
+        height: self.texture_size[1]
+        text_size: self.width, None
+        halign: "left"
+
+    MDTextField:
+        id: search_field
+        hint_text: "Search nursing topics..."
+        mode: "rectangle"
+        icon_left: "magnify"
+        size_hint_y: None
+        height: "56dp"
+        on_text: root.on_search_text(self.text)
+
+    ScrollView:
+        do_scroll_x: False
+        bar_width: "3dp"
+
+        MDBoxLayout:
+            id: results_box
+            orientation: "vertical"
+            spacing: "10dp"
+            size_hint_y: None
+            height: self.minimum_height
+            padding: [0, "8dp", 0, "16dp"]

@@ -1,0 +1,38 @@
+<DashboardTab>:
+    orientation: "vertical"
+
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: ["20dp", "20dp", "20dp", "8dp"]
+        spacing: "4dp"
+        size_hint_y: None
+        height: self.minimum_height
+
+        MDLabel:
+            text: "Dashboard"
+            font_style: "H4"
+            bold: True
+            size_hint_y: None
+            height: self.texture_size[1]
+            text_size: self.width, None
+            halign: "left"
+
+        MDLabel:
+            text: "Monthly clinic statistics"
+            theme_text_color: "Secondary"
+            size_hint_y: None
+            height: self.texture_size[1]
+            text_size: self.width, None
+            halign: "left"
+
+    ScrollView:
+        do_scroll_x: False
+        bar_width: "3dp"
+
+        MDBoxLayout:
+            id: stats_box
+            orientation: "vertical"
+            padding: ["16dp", "8dp", "16dp", "24dp"]
+            spacing: "12dp"
+            size_hint_y: None
+            height: self.minimum_height

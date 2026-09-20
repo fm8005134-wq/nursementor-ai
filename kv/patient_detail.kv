@@ -1,0 +1,25 @@
+<PatientDetailScreen>:
+    name: "patient_detail"
+    md_bg_color: app.theme_cls.bg_normal
+
+    MDBoxLayout:
+        orientation: "vertical"
+
+        MDTopAppBar:
+            id: patient_toolbar
+            title: "Patient"
+            elevation: 4
+            left_action_items: [["arrow-left", lambda x: root.go_back()]]
+            right_action_items: [["pencil", lambda x: root.open_edit_patient_dialog()], ["delete", lambda x: root.confirm_delete_patient()], ["file-document-outline", lambda x: root.open_report()], ["chevron-left", lambda x: root.go_previous()], ["chevron-right", lambda x: root.go_next()]]
+
+        ScrollView:
+            do_scroll_x: False
+            bar_width: "3dp"
+
+            MDBoxLayout:
+                id: detail_box
+                orientation: "vertical"
+                padding: "16dp"
+                spacing: "12dp"
+                size_hint_y: None
+                height: self.minimum_height

@@ -1,0 +1,139 @@
+<QuizOptionButton@MDRaisedButton>:
+    size_hint_x: 1
+    size_hint_y: None
+    height: "56dp"
+    font_size: "16sp"
+
+
+<QuizScreen>:
+    name: "quiz"
+    md_bg_color: app.theme_cls.bg_normal
+
+    MDBoxLayout:
+        orientation: "vertical"
+
+        MDTopAppBar:
+            id: quiz_toolbar
+            title: "Clinic Simulator"
+            elevation: 4
+            left_action_items: [["arrow-left", lambda x: root.go_back()]]
+
+        MDBoxLayout:
+            orientation: "vertical"
+            padding: "16dp"
+            spacing: "12dp"
+
+            # --- Progress row ---
+            MDBoxLayout:
+                orientation: "horizontal"
+                size_hint_y: None
+                height: "30dp"
+
+                MDLabel:
+                    id: progress_label
+                    text: "Question 1 of 10"
+                    theme_text_color: "Secondary"
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    halign: "left"
+                    pos_hint: {"center_y": .5}
+
+                Widget:
+
+                MDLabel:
+                    id: score_label
+                    text: "Score: 0"
+                    theme_text_color: "Custom"
+                    text_color: app.theme_cls.primary_color
+                    bold: True
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    halign: "right"
+                    pos_hint: {"center_y": .5}
+
+            # --- Question card ---
+            MDCard:
+                orientation: "vertical"
+                padding: "16dp"
+                spacing: "8dp"
+                radius: [12, ]
+                elevation: 2
+                size_hint_y: None
+                height: "150dp"
+
+                MDLabel:
+                    id: topic_chip
+                    text: "Topic"
+                    theme_text_color: "Custom"
+                    text_color: app.theme_cls.primary_color
+                    bold: True
+                    font_style: "Caption"
+                    size_hint_y: None
+                    height: "20dp"
+                    halign: "left"
+
+                MDLabel:
+                    id: question_label
+                    text: "Question text"
+                    bold: True
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    halign: "left"
+
+            # --- Options scroll ---
+            ScrollView:
+                do_scroll_x: False
+                bar_width: "3dp"
+
+                MDBoxLayout:
+                    id: options_box
+                    orientation: "vertical"
+                    spacing: "10dp"
+                    size_hint_y: None
+                    height: self.minimum_height
+                    padding: [0, "4dp", 0, "4dp"]
+
+            # --- Explanation panel (hidden by default) ---
+            MDCard:
+                id: explanation_card
+                orientation: "vertical"
+                padding: "14dp"
+                spacing: "6dp"
+                radius: [12, ]
+                elevation: 3
+                size_hint_y: None
+                height: "0dp"
+                opacity: 0
+                md_bg_color: [0.95, 0.97, 0.96, 1]
+
+                MDLabel:
+                    id: explanation_title
+                    text: "Explanation"
+                    bold: True
+                    theme_text_color: "Custom"
+                    text_color: app.theme_cls.primary_color
+                    size_hint_y: None
+                    height: "22dp"
+                    halign: "left"
+
+                ScrollView:
+                    do_scroll_x: False
+
+                    MDLabel:
+                        id: explanation_label
+                        text: ""
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        text_size: self.width, None
+                        halign: "left"
+
+            # --- Next / Finish button ---
+            QuizOptionButton:
+                id: next_button
+                text: "NEXT QUESTION"
+                disabled: True
+                opacity: 0
+                on_release: root.on_next_pressed()
